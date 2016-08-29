@@ -1,0 +1,25 @@
+What are the steps leading to the agreement between developers and managers when configuring Themis’ rules
+"Overall, this is how it happens: the team sets a time to meet and discuss configuration of Themis (what the agree with, what the don’t agree with) At the end of this exchange, we have set aside some configuration subjects to setup in Themis, and we vote to agree on the decision to take. For example in one of those meetings, one developer emitted the idea of penalizing more the creation of defects according to their severity. Different proposals were made (penalizing more TD creation but leaving repayment points low, penalized more the creation of more severe defects and reward more the correction of severe defects, etc) and a vote was taken to decide which rule to set up. There are multiple arguments here: some consider that creating defects is worse and has to impact more the developer than the correction of an equivalent defect, others will allow the “right to make a mistake” and consider that a developer who fixed his mistake must be in a neutral state"
+
+Are there disagreement in the teams regarding the validity of Sonar’s rules? Are there cases where some rules are purposefully ignored?
+"Sonar’s rules are generally accepted as valid. I do not remember any case where Sonar identifies a defect that we consider as wrong (meanig: the rule presented by Sonar does not match the technical reality). However, there are indeed some rule that we purposefully ignore, especially when they depend on the technical legacy of the code. For example, an error that frequently comes up is our problem of package dependencies. Any creation of defect related to this rule is ignored by the developer because it is tied to the initial architecture of the project and it would be too costly to refactor today "
+
+Have you configured the Sonar rules (eg the threshold for a function that is too large) before Themis? Was there a change since Themis was introduced?
+"Th sonar rules are the one provided and decided by our company, which is an internal standard. We have not changed this since the introduction of Themis"
+
+Was there a change in the rules fixed by developers since the introduction of Themis?
+"There wasn’t really any “big change”. However, with the action plans and goals developers are incited to fix specific kinds of defects (for us, cyclomatic complexity for instance) and also incited to stop producing some (unused imports). We were already conscious on that matter previously, and Themis is an additional help that allows us to remain attentive"
+
+Are you aware of a case where fixing a rule lead to breaking other rules?
+"Lets take the following line:
+
+Collection myListOfForms = formsProvider.getListOfForms();
+
+CheckStyle indicates us that we should type our collection (Collection is a raw type. References to generic type Collection<E> should be parameterized), and instead write:
+
+ Collection<Form> myListOfForms = formsProvider.getListOfForms();
+
+Except that the collection given by formsProvider is also untyped, and we break the following rule: 
+Type safety: The expression of type Collection needs unchecked conversion to conform to Collection<Form>
+
+In practice, we should be able to fix it, but we would need to refactor a set of classes, make the associated regression test, which would take a rather long time. Thus, it is often a type of error that we leave as is."
