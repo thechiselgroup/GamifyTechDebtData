@@ -11,9 +11,11 @@
 
 * Est-ce que Themis vous aide à prévenir/corriger la dette technique?
 * Est-ce que Themis vous a permis d’apprendre?
-* Le jeu dans Themis
+
+## Le jeu dans Themis
 * Participez-vous au jeu?
 * Comment faites-vous pour obtenir des badges?
 * Avez-vous réalisé des modifications de code uniquement dans le but d’obtenir certains badges? 
-* Utilisation des informations de Themis par les managers
+
+## Utilisation des informations de Themis par les managers
 * Avez-vous des inquiétudes sur le fait que Themis “note” la qualité de votre code?
